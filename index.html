@@ -23,7 +23,7 @@
   <style>
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { margin: 0; background: #ffffff; color: #33302b; font-family: 'Source Sans 3', 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { margin: 0; background: #ffffff; color: #33302b; font-family: 'Source Sans 3', 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     img { max-width: 100%; }
     a { color: #255887; text-decoration: none; }
     a:hover { color: #1a4166; }
@@ -39,26 +39,47 @@
     .btn-on-blue:hover { background: #22201c; color: #ffffff; }
     .footer-link { color: #c8c2b8; }
     .footer-link:hover { color: #ffffff; }
+
+    /* Header / nav */
+    .site-header { background: #ffffff; border-bottom: 1px solid #eee9e1; position: sticky; top: 0; z-index: 10; }
+    .nav-inner { max-width: 1140px; margin: 0 auto; padding: 0 24px; height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; color: #22201c; }
+    .site-nav { display: flex; align-items: center; gap: 32px; font-size: 15.5px; font-weight: 600; }
+    .nav-cta { padding: 11px 22px; border-radius: 6px; }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .nav-inner { height: auto; padding: 12px 18px; gap: 14px; }
+      .site-nav { gap: 20px; font-size: 14px; }
+      .nav-cta { padding: 9px 16px; }
+      /* Reduce oversized section padding on small screens */
+      .section-pad { padding-top: 56px !important; padding-bottom: 56px !important; }
+    }
+    @media (max-width: 480px) {
+      /* Single-page scroller: drop section links, keep brand + primary CTA */
+      .site-nav .nav-link { display: none; }
+      .brand { font-size: 18px; }
+    }
   </style>
 </head>
 <body>
 
 <!-- Header / nav -->
-<div style="background: #ffffff; border-bottom: 1px solid #eee9e1; position: sticky; top: 0; z-index: 10">
-  <div style="max-width: 1140px; margin: 0 auto; padding: 0 24px; height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
-    <a href="#top" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; color: #22201c">Ranjit Victor</a>
-    <nav style="display: flex; align-items: center; gap: 32px; font-size: 15.5px; font-weight: 600">
+<div class="site-header">
+  <div class="nav-inner">
+    <a href="#top" class="brand">Ranjit Victor</a>
+    <nav class="site-nav">
       <a href="#services" class="nav-link">Services</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#playbook" class="nav-link">Playbook</a>
-      <a href="mailto:hello@ranjitvictor.com?subject=30-minute%20call" class="btn-primary" style="padding: 11px 22px; border-radius: 6px">Book a Call</a>
+      <a href="mailto:hello@ranjitvictor.com?subject=30-minute%20call" class="btn-primary nav-cta">Book a Call</a>
     </nav>
   </div>
 </div>
 
 <!-- Hero -->
 <section id="top" style="background-color: #FFFFFF">
-  <div style="max-width: 1140px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
+  <div class="section-pad" style="max-width: 1140px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
     <div style="flex: 1 1 520px">
       <p style="margin: 0 0 18px; font-size: 15px; font-weight: 600; color: #255887; letter-spacing: 0.04em; text-transform: uppercase">Security consulting for growing software companies</p>
       <h1 style="margin: 0 0 22px; font-family: 'Poppins', sans-serif; font-size: clamp(34px, 4.5vw, 50px); line-height: 1.15; font-weight: 700; color: #22201c; text-wrap: balance">Pass enterprise security scrutiny. Without hiring a security team.</h1>
@@ -73,13 +94,13 @@
 
 <!-- What good looks like -->
 <section style="background: #ffffff">
-  <div style="max-width: 1140px; margin: 0 auto; padding: 88px 24px">
+  <div class="section-pad" style="max-width: 1140px; margin: 0 auto; padding: 88px 24px">
     <div style="text-align: center; max-width: 760px; margin: 0 auto 56px">
       <h2 style="margin: 0 0 18px; font-family: 'Poppins', sans-serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 700; color: #22201c; line-height: 1.2">What good looks like, 90 days from now</h2>
       <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #5f5a52; text-wrap: pretty">Imagine the next enterprise security questionnaire lands on a Tuesday. By Thursday it is back with the customer, every answer true and evidenced. Nobody lost a week. Nobody guessed.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto 64px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 24px; max-width: 900px; margin: 0 auto 64px">
       <div style="background: #faf6f0; border: 1px solid #eee9e1; border-radius: 10px; padding: 32px">
         <p style="margin: 0 0 16px; font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 600; color: #8d8578">Reacting</p>
         <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.55; color: #5f5a52">
@@ -100,7 +121,7 @@
       </div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 28px">
       <div style="display: flex; gap: 16px; align-items: flex-start">
         <span style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; background: #255887; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin-top: 2px">✓</span>
         <div>
@@ -149,7 +170,7 @@
 
 <!-- Where you are -->
 <section style="background: #22201c">
-  <div style="max-width: 800px; margin: 0 auto; padding: 80px 24px; text-align: center">
+  <div class="section-pad" style="max-width: 800px; margin: 0 auto; padding: 80px 24px; text-align: center">
     <h2 style="margin: 0 0 24px; font-family: 'Poppins', sans-serif; font-size: clamp(26px, 3vw, 34px); font-weight: 700; color: #ffffff; line-height: 1.25">Sound familiar?</h2>
     <p style="margin: 0 0 20px; font-size: 18px; line-height: 1.7; color: #c8c2b8; text-wrap: pretty">Most companies I work with look like this when we start: shipping fast, no dedicated security person, a scanner or two nobody reads (or none at all), and a founder who lost a week to the last security questionnaire and is not sure every answer was true. If a customer or auditor showed up tomorrow, it would be a scramble.</p>
     <p style="margin: 0; font-size: 18px; line-height: 1.7; color: #ffffff; text-wrap: pretty">That is not negligence. It is what focus looks like at your stage. But there is a point where it starts costing you deals — and you are probably at it, or you would not be reading this.</p>
@@ -158,12 +179,12 @@
 
 <!-- Services / The path -->
 <section id="services" style="background: #faf6f0">
-  <div style="max-width: 1140px; margin: 0 auto; padding: 88px 24px">
+  <div class="section-pad" style="max-width: 1140px; margin: 0 auto; padding: 88px 24px">
     <div style="text-align: center; max-width: 680px; margin: 0 auto 56px">
       <h2 style="margin: 0 0 14px; font-family: 'Poppins', sans-serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 700; color: #22201c">The path</h2>
       <p style="margin: 0; font-size: 18px; color: #5f5a52">Three steps. Start small; each one stands on its own.</p>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 28px">
       <div style="background: #ffffff; border-radius: 10px; padding: 36px 30px; box-shadow: 0 10px 30px -18px rgba(60,50,35,0.25); display: flex; flex-direction: column; gap: 14px">
         <span style="width: 44px; height: 44px; border-radius: 8px; background: #dfe9f2; color: #255887; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-size: 19px; font-weight: 700">1</span>
         <h3 style="margin: 0; font-family: 'Poppins', sans-serif; font-size: 21px; font-weight: 600; color: #22201c; line-height: 1.25">Security Snapshot</h3>
@@ -189,9 +210,9 @@
 
 <!-- About -->
 <section id="about" style="background: #ffffff">
-  <div style="max-width: 1140px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
-    <div style="flex: 0 0 auto; margin: 0 auto">
-      <img src="uploads/photo-1784605051170.jpg" alt="Ranjit Victor" width="300" height="300" style="width: 300px; height: 300px; object-fit: cover; display: block; border-radius: 50%;filter: grayscale(.9);">
+  <div class="section-pad" style="max-width: 1140px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
+    <div style="flex: 0 1 auto; margin: 0 auto; max-width: 100%">
+      <img src="uploads/photo-1784605051170.jpg" alt="Ranjit Victor" width="300" height="300" style="width: 300px; max-width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: cover; display: block; border-radius: 50%; filter: grayscale(.9);">
     </div>
     <div style="flex: 1 1 520px">
       <h2 style="margin: 0 0 22px; font-family: 'Poppins', sans-serif; font-size: clamp(28px, 3.4vw, 38px); font-weight: 700; color: #22201c">Proof, not biography</h2>
@@ -204,9 +225,9 @@
 
 <!-- How I work -->
 <section style="background: #faf6f0">
-  <div style="max-width: 1140px; margin: 0 auto; padding: 80px 24px">
+  <div class="section-pad" style="max-width: 1140px; margin: 0 auto; padding: 80px 24px">
     <h2 style="margin: 0 0 48px; font-family: 'Poppins', sans-serif; font-size: clamp(26px, 3vw, 34px); font-weight: 700; color: #22201c; text-align: center">How I work</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 24px">
       <div style="background: #ffffff; border: 1px solid #eee9e1; border-radius: 10px; padding: 28px 24px">
         <h3 style="margin: 0 0 10px; font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 600; color: #22201c">Read-only, always</h3>
         <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #5f5a52; text-wrap: pretty">Scoped, time-boxed access you revoke when we finish. I will remind you to revoke it.</p>
@@ -229,7 +250,7 @@
 
 <!-- Playbook -->
 <section id="playbook" style="background-color: #255887">
-  <div style="max-width: 900px; margin: 0 auto; padding: 72px 24px; text-align: center">
+  <div class="section-pad" style="max-width: 900px; margin: 0 auto; padding: 72px 24px; text-align: center">
     <h2 style="margin: 0 0 16px; font-family: 'Poppins', sans-serif; font-size: clamp(26px, 3vw, 34px); font-weight: 700; color: #ffffff">The Enterprise-Readiness Playbook</h2>
     <p style="margin: 0 auto 32px; font-size: 17.5px; line-height: 1.65; color: #d3e2f0; max-width: 62ch; text-wrap: pretty">How security questionnaires, SOC 2 and ISO 27001 controls, and scanner findings actually connect — and the exact 90-day sequence from reactive to ready. Written for founders and engineering leaders, not auditors.</p>
     <a href="uploads/Enterprise_Readiness_Playbook.pdf" download class="btn-on-blue" style="display: inline-block; padding: 15px 32px; border-radius: 6px; font-size: 16.5px; font-weight: 600">Get the playbook</a>
@@ -238,7 +259,7 @@
 
 <!-- Final CTA -->
 <section style="background: #ffffff">
-  <div style="max-width: 760px; margin: 0 auto; padding: 88px 24px; text-align: center">
+  <div class="section-pad" style="max-width: 760px; margin: 0 auto; padding: 88px 24px; text-align: center">
     <h2 style="margin: 0 0 16px; font-family: 'Poppins', sans-serif; font-size: clamp(30px, 4vw, 42px); font-weight: 700; color: #22201c">Find out where you stand</h2>
     <p style="margin: 0 0 32px; font-size: 18px; line-height: 1.65; color: #5f5a52; text-wrap: pretty">30 minutes, no charge. Bring your last security questionnaire if you have one; I will show you what it was really asking.</p>
     <a href="mailto:hello@ranjitvictor.com?subject=30-minute%20call" class="btn-primary" style="display: inline-block; padding: 16px 36px; border-radius: 6px; font-size: 17px; font-weight: 600; box-shadow: 0 6px 16px -6px rgba(37,88,135,0.45)">Book a call</a>
