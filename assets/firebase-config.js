@@ -1,12 +1,10 @@
 // Shared Firebase setup for the public form and the admin page.
 //
 // NOTE: These values are NOT secrets. A Firebase web "apiKey" is a public
-// project identifier — security is enforced by Firestore Security Rules and
-// (optionally) App Check, NOT by hiding this config. It is safe to commit.
-//
-// ▶ After you create the Firebase project (see SETUP.md), replace the
-//   PASTE_… placeholders below with the config object Firebase gives you,
-//   and paste your Web3Forms access key. App Check is optional.
+// project identifier that must ship in browser code — security is enforced by
+// Firestore Security Rules + App Check, NOT by hiding this config. It is safe
+// to commit. Best practice is to restrict the key to your domains in the Google
+// Cloud console (APIs & Services → Credentials) and enable App Check below.
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import {
