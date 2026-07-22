@@ -60,6 +60,33 @@
       .site-nav .nav-link { display: none; }
       .brand { font-size: 18px; }
     }
+
+    /* Engagement questionnaire modal */
+    #inquiry-dialog { width: min(560px, 92vw); border: none; border-radius: 14px; padding: 0; box-shadow: 0 30px 80px -20px rgba(34,32,28,0.45); color: #33302b; }
+    #inquiry-dialog::backdrop { background: rgba(34,32,28,0.55); backdrop-filter: blur(2px); }
+    .iq-head { padding: 28px 32px 8px; }
+    .iq-head h2 { margin: 0 0 6px; font-family: 'Poppins', sans-serif; font-size: 23px; font-weight: 700; color: #22201c; }
+    .iq-head p { margin: 0; font-size: 15px; line-height: 1.55; color: #5f5a52; }
+    .iq-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 26px; line-height: 1; color: #8d8578; cursor: pointer; padding: 4px 8px; border-radius: 6px; }
+    .iq-close:hover { color: #22201c; background: #faf6f0; }
+    #inquiry-form { padding: 12px 32px 28px; display: flex; flex-direction: column; gap: 14px; }
+    .iq-field { display: flex; flex-direction: column; gap: 6px; }
+    .iq-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .iq-row .iq-field { flex: 1 1 200px; }
+    .iq-field label { font-size: 13.5px; font-weight: 600; color: #22201c; }
+    .iq-field input, .iq-field select, .iq-field textarea {
+      font-family: 'Source Sans 3', sans-serif; font-size: 15px; color: #33302b;
+      padding: 10px 12px; border: 1.5px solid #ddd5c9; border-radius: 8px; background: #fff; width: 100%;
+    }
+    .iq-field textarea { resize: vertical; min-height: 88px; }
+    .iq-field input:focus, .iq-field select:focus, .iq-field textarea:focus { outline: none; border-color: #255887; box-shadow: 0 0 0 3px rgba(37,88,135,0.12); }
+    .iq-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    #inquiry-form button[type=submit] { margin-top: 4px; border: none; cursor: pointer; }
+    #inquiry-form button[type=submit]:disabled { opacity: 0.6; cursor: default; }
+    .iq-status { font-size: 14.5px; line-height: 1.5; min-height: 1.2em; }
+    .iq-status.ok { color: #1f7a4d; font-weight: 600; }
+    .iq-status.err { color: #b23b3b; font-weight: 600; }
+    .iq-required { color: #a8502a; }
   </style>
 </head>
 <body>
@@ -72,7 +99,7 @@
       <a href="#services" class="nav-link">Services</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#playbook" class="nav-link">Playbook</a>
-      <a href="mailto:hello@ranjitvictor.com?subject=30-minute%20call" class="btn-primary nav-cta">Book a Call</a>
+      <a href="mailto:hello@ranjitvictor.com?subject=30-minute%20call" class="btn-primary nav-cta js-open-form" data-source="nav">Book a Call</a>
     </nav>
   </div>
 </div>
@@ -85,7 +112,7 @@
       <h1 style="margin: 0 0 22px; font-family: 'Poppins', sans-serif; font-size: clamp(34px, 4.5vw, 50px); line-height: 1.15; font-weight: 700; color: #22201c; text-wrap: balance">Pass enterprise security scrutiny. Without hiring a security team.</h1>
       <p style="margin: 0 0 34px; font-size: 19px; line-height: 1.65; color: #5f5a52; max-width: 58ch; text-wrap: pretty">I help growing software companies (10 to 80 engineers) get deal-ready: security questionnaires answered in an afternoon, auditors met with evidence instead of scramble, and a clear view of the handful of risks that actually matter.</p>
       <div style="display: flex; flex-wrap: wrap; gap: 14px">
-        <a href="mailto:hello@ranjitvictor.com?subject=30-minute%20call" class="btn-primary" style="display: inline-block; padding: 15px 30px; border-radius: 6px; font-size: 16.5px; font-weight: 600; box-shadow: 0 6px 16px -6px rgba(37,88,135,0.45)">Book a 30-minute call</a>
+        <a href="mailto:hello@ranjitvictor.com?subject=30-minute%20call" class="btn-primary js-open-form" data-source="hero" style="display: inline-block; padding: 15px 30px; border-radius: 6px; font-size: 16.5px; font-weight: 600; box-shadow: 0 6px 16px -6px rgba(37,88,135,0.45)">Book a 30-minute call</a>
         <a href="uploads/Enterprise_Readiness_Playbook.pdf" download class="btn-outline" style="display: inline-block; padding: 15px 30px; border-radius: 6px; font-size: 16.5px; font-weight: 600">Download the playbook</a>
       </div>
     </div>
@@ -262,7 +289,7 @@
   <div class="section-pad" style="max-width: 760px; margin: 0 auto; padding: 88px 24px; text-align: center">
     <h2 style="margin: 0 0 16px; font-family: 'Poppins', sans-serif; font-size: clamp(30px, 4vw, 42px); font-weight: 700; color: #22201c">Find out where you stand</h2>
     <p style="margin: 0 0 32px; font-size: 18px; line-height: 1.65; color: #5f5a52; text-wrap: pretty">30 minutes, no charge. Bring your last security questionnaire if you have one; I will show you what it was really asking.</p>
-    <a href="mailto:hello@ranjitvictor.com?subject=30-minute%20call" class="btn-primary" style="display: inline-block; padding: 16px 36px; border-radius: 6px; font-size: 17px; font-weight: 600; box-shadow: 0 6px 16px -6px rgba(37,88,135,0.45)">Book a call</a>
+    <a href="mailto:hello@ranjitvictor.com?subject=30-minute%20call" class="btn-primary js-open-form" data-source="final-cta" style="display: inline-block; padding: 16px 36px; border-radius: 6px; font-size: 17px; font-weight: 600; box-shadow: 0 6px 16px -6px rgba(37,88,135,0.45)">Book a call</a>
   </div>
 </section>
 
@@ -270,12 +297,157 @@
 <footer style="background: #22201c">
   <div style="max-width: 1140px; margin: 0 auto; padding: 48px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px">
     <div style="display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 15px">
-      <a href="mailto:hello@ranjitvictor.com" class="footer-link">hello@ranjitvictor.com</a>
+      <a href="mailto:hello@ranjitvictor.com" class="footer-link js-open-form" data-source="footer">Start an engagement</a>
       <a href="https://linkedin.com/in/ranjitvictor" class="footer-link">linkedin.com/in/ranjitvictor</a>
     </div>
     <span style="font-size: 13.5px; color: #8d8578">© 2026 Ranjit Victor</span>
   </div>
 </footer>
+
+<!-- Engagement questionnaire modal -->
+<dialog id="inquiry-dialog" aria-labelledby="iq-title">
+  <button type="button" class="iq-close" data-close aria-label="Close">&times;</button>
+  <div class="iq-head">
+    <h2 id="iq-title">Start an engagement</h2>
+    <p>Tell me a little about your situation and I'll be in touch within one business day. No obligation.</p>
+  </div>
+  <form id="inquiry-form" novalidate>
+    <!-- Honeypot: real people never fill this -->
+    <div class="iq-hp" aria-hidden="true">
+      <label>Company website<input type="text" name="company_url" tabindex="-1" autocomplete="off"></label>
+    </div>
+
+    <div class="iq-row">
+      <div class="iq-field">
+        <label for="iq-name">Name <span class="iq-required">*</span></label>
+        <input id="iq-name" name="name" type="text" required maxlength="120" autocomplete="name">
+      </div>
+      <div class="iq-field">
+        <label for="iq-email">Work email <span class="iq-required">*</span></label>
+        <input id="iq-email" name="email" type="email" required maxlength="200" autocomplete="email">
+      </div>
+    </div>
+
+    <div class="iq-row">
+      <div class="iq-field">
+        <label for="iq-company">Company</label>
+        <input id="iq-company" name="company" type="text" maxlength="160" autocomplete="organization">
+      </div>
+      <div class="iq-field">
+        <label for="iq-teamSize">Engineering team size</label>
+        <select id="iq-teamSize" name="teamSize">
+          <option value="">Select…</option>
+          <option>1–10</option>
+          <option>10–30</option>
+          <option>30–80</option>
+          <option>80+</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="iq-field">
+      <label for="iq-situation">Where are you today?</label>
+      <select id="iq-situation" name="situation">
+        <option value="">Select…</option>
+        <option>No dedicated security yet</option>
+        <option>Have scanners, but no real process</option>
+        <option>Prepping for SOC 2 / ISO 27001</option>
+        <option>Stalled or failed on a security review</option>
+        <option>Something else</option>
+      </select>
+    </div>
+
+    <div class="iq-field">
+      <label for="iq-message">What do you need help with? <span class="iq-required">*</span></label>
+      <textarea id="iq-message" name="message" required maxlength="4000" placeholder="A questionnaire you're stuck on, an upcoming audit, a deal waiting on a security review…"></textarea>
+    </div>
+
+    <div class="iq-field">
+      <label for="iq-timeline">Timeline</label>
+      <select id="iq-timeline" name="timeline">
+        <option value="">Select…</option>
+        <option>Just exploring</option>
+        <option>This quarter</option>
+        <option>A deal is on the line now</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn-primary" style="padding: 13px 28px; border-radius: 6px; font-size: 16px; font-weight: 600">Send inquiry</button>
+    <p class="iq-status" id="iq-status" role="status" aria-live="polite"></p>
+  </form>
+</dialog>
+
+<script type="module">
+  import { app, DB_ID } from "./assets/firebase-config.js";
+  import { getFirestore, collection, addDoc, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  const db = getFirestore(app, DB_ID);
+  const dlg = document.getElementById("inquiry-dialog");
+  const form = document.getElementById("inquiry-form");
+  const statusEl = document.getElementById("iq-status");
+  let source = "unknown";
+
+  // Open from any CTA; keep mailto as no-JS fallback
+  document.querySelectorAll(".js-open-form").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      source = el.getAttribute("data-source") || "unknown";
+      statusEl.textContent = "";
+      statusEl.className = "iq-status";
+      dlg.showModal();
+    });
+  });
+
+  // Close: X button, or click on the backdrop
+  dlg.addEventListener("click", (e) => {
+    if (e.target === dlg || e.target.closest("[data-close]")) dlg.close();
+  });
+
+  const el = (id) => document.getElementById(id);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Honeypot — bots fill this; pretend success and stop
+    if (form.querySelector("[name=company_url]").value.trim() !== "") { dlg.close(); return; }
+
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
+    statusEl.className = "iq-status";
+    statusEl.textContent = "Sending…";
+
+    const data = {
+      name: el("iq-name").value.trim(),
+      email: el("iq-email").value.trim(),
+      company: el("iq-company").value.trim(),
+      teamSize: el("iq-teamSize").value,
+      situation: el("iq-situation").value,
+      message: el("iq-message").value.trim(),
+      timeline: el("iq-timeline").value,
+      read: false,
+      source,
+    };
+
+    try {
+      // Store in Firestore. Submissions appear in the secured admin inbox (/admin.html).
+      await addDoc(collection(db, "inquiries"), { ...data, createdAt: serverTimestamp() });
+
+      statusEl.className = "iq-status ok";
+      statusEl.textContent = "Thanks — I'll be in touch within one business day.";
+      form.reset();
+      setTimeout(() => dlg.close(), 2600);
+    } catch (err) {
+      console.error(err);
+      statusEl.className = "iq-status err";
+      statusEl.textContent = "Something went wrong sending that. Please email hello@ranjitvictor.com directly.";
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
 
 </body>
 </html>

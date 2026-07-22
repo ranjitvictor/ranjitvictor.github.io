@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inbox — Ranjit Victor</title>
+
+  <!-- Never cache; never index. (GitHub Pages can't set HTTP headers; these + in-memory auth are the guard.) -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f4f1ea; color: #33302b; font-family: 'Source Sans 3', 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+    header { background: #22201c; color: #fff; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    header .title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; }
+    header .who { font-size: 14px; color: #c8c2b8; display: flex; align-items: center; gap: 14px; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 20px 80px; }
+    button { font-family: inherit; cursor: pointer; }
+    .btn { border: none; border-radius: 6px; padding: 10px 18px; font-size: 15px; font-weight: 600; background: #255887; color: #fff; }
+    .btn:hover { background: #1a4166; }
+    .btn.ghost { background: transparent; color: #c8c2b8; border: 1px solid #4a4640; }
+    .btn.ghost:hover { color: #fff; border-color: #6b665e; }
+
+    .gate { max-width: 420px; margin: 14vh auto; text-align: center; background: #fff; border: 1px solid #e6e0d5; border-radius: 14px; padding: 40px 32px; box-shadow: 0 20px 60px -30px rgba(34,32,28,0.4); }
+    .gate h1 { font-family: 'Poppins', sans-serif; font-size: 22px; margin: 0 0 8px; color: #22201c; }
+    .gate p { color: #5f5a52; font-size: 15px; line-height: 1.55; margin: 0 0 22px; }
+    .gate .msg { min-height: 1.2em; font-size: 14px; margin-top: 16px; }
+    .gate .msg.err { color: #b23b3b; font-weight: 600; }
+
+    .meta { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+    .meta h2 { font-family: 'Poppins', sans-serif; font-size: 20px; margin: 0; color: #22201c; }
+    .meta .count { font-size: 14px; color: #5f5a52; }
+
+    .card { background: #fff; border: 1px solid #e6e0d5; border-radius: 12px; padding: 20px 22px; margin-bottom: 14px; box-shadow: 0 8px 24px -20px rgba(34,32,28,0.5); }
+    .card.unread { border-left: 4px solid #255887; }
+    .card .top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .card .name { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 17px; color: #22201c; }
+    .card .when { font-size: 13px; color: #8d8578; white-space: nowrap; }
+    .card .email a { color: #255887; text-decoration: none; font-weight: 600; }
+    .card .tags { display: flex; gap: 8px 10px; flex-wrap: wrap; margin: 10px 0; }
+    .card .tag { font-size: 12.5px; background: #f0ece3; color: #5f5a52; border-radius: 999px; padding: 4px 11px; }
+    .card .tag b { color: #33302b; font-weight: 600; }
+    .card .msg { font-size: 15px; line-height: 1.6; color: #33302b; white-space: pre-wrap; margin: 8px 0 0; }
+    .card .actions { margin-top: 14px; }
+    .card .actions button { font-size: 13.5px; font-weight: 600; background: none; border: 1px solid #ddd5c9; color: #5f5a52; border-radius: 6px; padding: 6px 12px; }
+    .card .actions button:hover { border-color: #255887; color: #255887; }
+    .empty { text-align: center; color: #8d8578; padding: 60px 20px; font-size: 15px; }
+    .pill { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #255887; background: #dfe9f2; border-radius: 999px; padding: 3px 9px; }
+  </style>
+</head>
+<body>
+  <!-- Signed-out gate -->
+  <div id="gate" class="gate">
+    <h1>Inbox</h1>
+    <p>Sign in with the owner Google account to view engagement inquiries.</p>
+    <button id="signin" class="btn">Sign in with Google</button>
+    <div id="gate-msg" class="msg"></div>
+  </div>
+
+  <!-- Signed-in app (hidden until authorized) -->
+  <div id="app" hidden>
+    <header>
+      <span class="title">Engagement inbox</span>
+      <span class="who"><span id="who-email"></span><button id="signout" class="btn ghost">Sign out</button></span>
+    </header>
+    <div class="wrap">
+      <div class="meta">
+        <h2>Inquiries</h2>
+        <span class="count" id="count"></span>
+      </div>
+      <div id="list"></div>
+    </div>
+  </div>
+
+  <script type="module" src="./assets/admin.js"></script>
+</body>
+</html>
